@@ -1,0 +1,218 @@
+{
+  "checked_at": "2026-11-05",
+  "title": "桥白高速开通后 · 假设车行情景",
+  "visible_badge": "假设情景估算 · 非导航",
+  "scope": "假设桥白高速建成、所需互通及本案连接线可用，干燥、普通非高峰条件。九峰山按地方道路接驳，不假定高速带来提速。",
+  "model_status": "illustrative_assumption_model_not_verified_routing",
+  "important": "这是一组为愿景展示设定的、可复算的里程和速度假设，并非根据已公布完整线位量算出的预测。未来真实路程、交通政策与车程可能超出范围。",
+  "excluded": [
+    "进入景区后的环保车/公交换乘",
+    "预约和候车排队",
+    "登山、步行及游览",
+    "节假日拥堵、封路与恶劣天气延误"
+  ],
+  "formula": "分钟 = 60 × (高速假设公里 / 高速情景均速 + 地方道路假设公里 / 地方道路情景均速) + 进出、停车接驳预留。下界取短里程/较高均速， 上界取长里程/较低均速，向外取整至5分钟。设计速度不能代替情景平均速度。",
+  "rows": [
+    {
+      "id": "nanyue",
+      "label": "南岳圣地 · 衡山",
+      "origin": "富厚堂（家教圣地展示锚点）",
+      "driving_destination_assumed": "南岳山下游客中心或合法停车点",
+      "scenario_driving_minutes": [
+        50,
+        100
+      ],
+      "scenario_driving_label": "约50–100分钟",
+      "assumed_road_km": [
+        60,
+        85
+      ],
+      "assumed_highway_km": [
+        50,
+        65
+      ],
+      "assumed_local_road_km": [
+        10,
+        20
+      ],
+      "assumed_highway_average_kmh": [
+        80,
+        95
+      ],
+      "assumed_local_average_kmh": [
+        30,
+        40
+      ],
+      "assumed_terminal_delay_min": [
+        5,
+        10
+      ],
+      "computed_before_rounding_min": [
+        51.6,
+        98.7
+      ],
+      "straight_line_reference_km": 26.5,
+      "straight_line_reference_endpoint": "祝融峰POI",
+      "endpoint_warning": "直线距离以地图代表点计算，车行估算以合法停车终点为假设，两者端点口径不同。",
+      "model_note": "高速部分假设含桥白东向衔接及白南等可用高速；具体出口、分段里程并未获批线位验证。南岳车行以山下停车为止，上山换乘、步行另计。",
+      "disclaimer": "假设情景估算，非导航；里程和运行速度均为模型输入，不是规划实测或官方预测。"
+    },
+    {
+      "id": "shaoshan",
+      "label": "红色圣地 · 韶山",
+      "origin": "富厚堂（家教圣地展示锚点）",
+      "driving_destination_assumed": "韶山游客换乘中心或获准使用的停车点",
+      "scenario_driving_minutes": [
+        65,
+        125
+      ],
+      "scenario_driving_label": "约65–125分钟",
+      "assumed_road_km": [
+        80,
+        110
+      ],
+      "assumed_highway_km": [
+        65,
+        85
+      ],
+      "assumed_local_road_km": [
+        15,
+        25
+      ],
+      "assumed_highway_average_kmh": [
+        80,
+        95
+      ],
+      "assumed_local_average_kmh": [
+        30,
+        40
+      ],
+      "assumed_terminal_delay_min": [
+        5,
+        10
+      ],
+      "computed_before_rounding_min": [
+        68.6,
+        123.8
+      ],
+      "straight_line_reference_km": 55.6,
+      "straight_line_reference_endpoint": "毛泽东同志故居POI",
+      "endpoint_warning": "直线距离以地图代表点计算，车行估算以合法停车终点为假设，两者端点口径不同。",
+      "model_note": "假设桥白与既有高速网络及景区接线组合可用；不指定未核实的互通，不声称最短路线或比现状一定更快。进入核心景区的换乘/有限自驾条件另计。",
+      "disclaimer": "假设情景估算，非导航；里程和运行速度均为模型输入，不是规划实测或官方预测。"
+    },
+    {
+      "id": "jiufeng",
+      "label": "家教组团 · 双峰九峰山",
+      "origin": "富厚堂（家教圣地展示锚点）",
+      "driving_destination_assumed": "九峰山森林公园可达车行入口或停车点",
+      "scenario_driving_minutes": [
+        30,
+        80
+      ],
+      "scenario_driving_label": "约30–80分钟",
+      "assumed_road_km": [
+        18,
+        28
+      ],
+      "assumed_highway_km": [
+        0,
+        0
+      ],
+      "assumed_local_road_km": [
+        18,
+        28
+      ],
+      "assumed_highway_average_kmh": null,
+      "assumed_local_average_kmh": [
+        25,
+        35
+      ],
+      "assumed_terminal_delay_min": [
+        3,
+        8
+      ],
+      "computed_before_rounding_min": [
+        33.9,
+        75.2
+      ],
+      "straight_line_reference_km": 13.4,
+      "straight_line_reference_endpoint": "九峰山森林公园POI",
+      "endpoint_warning": "直线距离以地图代表点计算，车行估算以合法停车终点为假设，两者端点口径不同。",
+      "model_note": "按地方与山地道路接驳假设，不假定驶入桥白高速，也不假定从井字服务区对外驶出。该公园POI不是已核车行入口或峰顶。",
+      "disclaimer": "假设情景估算，非导航；里程和运行速度均为模型输入，不是规划实测或官方预测。"
+    }
+  ],
+  "source_fact_boundary": "下列官方来源只支撑规划存在、全线规模、已建白南区段与景区通行规则，不支撑本表自定分段公里数或未来车程。",
+  "sources": [
+    {
+      "id": "province_plan",
+      "label": "湖南省高速公路网规划（2024–2035年）",
+      "url": "https://www.miluo.gov.cn/uploadfiles/202510/2025101416400848330.pdf#page=36",
+      "date": "2025-04",
+      "fact": "附表第32项衡山白果至双峰高速公路规模65公里；第33项涟源龙塘至双峰53公里。这是全线规划规模，不是景点间里程。"
+    },
+    {
+      "id": "official_response",
+      "label": "省交通厅关于桥白高速规划的答复",
+      "url": "https://jtt.hunan.gov.cn/jtt/jjzdgz/jytabl/zxta/202506/t20250617_33710897.html",
+      "date": "2025-06-17",
+      "fact": "桥头河至白果纳入新规划，名称为衡山白果至双峰、涟源龙塘至双峰；支持深化前期研究。"
+    },
+    {
+      "id": "feasibility_review",
+      "label": "衡山白果至双峰工可报告咨询审查采购结果",
+      "url": "https://jtt.hunan.gov.cn/jtt/xxgk/zdlyxxgk/zbzb/zbgs/202509/t20250917_33805954.html",
+      "date": "2025-09-17",
+      "fact": "公告证实工可咨询审查服务采购，不是工程开通或互通设计批复。"
+    },
+    {
+      "id": "2026_work_report",
+      "label": "衡山县2026年政府工作报告",
+      "url": "https://www.hengshan.gov.cn/xxgk/fdzdgknr/ghjh/20260312/i3872820.html",
+      "date": "2026-03-12",
+      "fact": "提出推进白果至双峰高速衡山段前期工作。"
+    },
+    {
+      "id": "bainan_open",
+      "label": "省交通厅白南高速通车信息",
+      "url": "https://jtt.hunan.gov.cn/jtt/xxgk/gzdt/szdt1/202409/t20240924_33461254.html",
+      "date": "2024-09-24",
+      "fact": "白南高速已经通车，设计速度100km/h；报道白果到南岳约20分钟，仅能说明这个区段，不能当作富厚堂全程车程。"
+    },
+    {
+      "id": "nanyue_transfer",
+      "label": "南岳衡山环保车分时预约管理",
+      "url": "https://www.nanyue.gov.cn/zwgk/nyyw/20260428/i3894827.html",
+      "date": "2026-04-28",
+      "fact": "中心景区实行环保车限量预约错峰，应将山下自驾与景区内换乘分开。"
+    },
+    {
+      "id": "nanyue_vehicle",
+      "label": "南岳中心景区车辆备案管理",
+      "url": "https://www.nanyue.gov.cn/zwgk/bmdt/20260227/i3866127.html",
+      "date": "2026-02-27",
+      "fact": "中心景区备案车辆实行电子通行证和临时审批，不可假设普通私家车可直达祝融峰。"
+    },
+    {
+      "id": "shaoshan_access",
+      "label": "韶山核心景区交通管理",
+      "url": "https://www.ssxww.net.cn/content/646042/69/16204128.html",
+      "date": "2026-08-25",
+      "fact": "采用换乘公交+有限自驾、一车一证一位管理，应另确定合法停车终点。"
+    },
+    {
+      "id": "bainan_mainline",
+      "label": "省交通质安局白南高速主线资料",
+      "url": "https://jtt.hunan.gov.cn/hnjtza/zazt/jjzdxm/202304/t20230428_29326642.html",
+      "date": "2023-04-26",
+      "fact": "建设期介绍白果至开云主线约32.6km、衡山支线另约14.5km。只作廊道量级参考；开通事实另由2024通车资料证实。"
+    }
+  ],
+  "assumption_basis": [
+    "使用已核地区相对位置与真实直线距离作量级检查，但不把直线距离充当公路里程。",
+    "南岳采用白果方向衔接已建白南的走廊设想；白南主体白果至开云约32.6km，仅为走廊量级参考，并非富厚堂至南岳全程。",
+    "韶山按高速绕行与两端接线需要设较宽区间，不以两点直线或全程高速100km/h换算。",
+    "九峰山考虑地方道路弯绕和山地低均速，入口未被当作实测控制点。"
+  ]
+}

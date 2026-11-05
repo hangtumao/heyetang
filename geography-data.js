@@ -1,0 +1,1 @@
+export const geography={"enabled": false, "basemap": {"bbox": [0, 0, 1, 1], "image": "", "label": "公开概念版", "attribution": "", "license": "", "licenseURL": "", "sourceURL": ""}, "nodes": [], "roads": [], "features": [], "areas": [], "sources": [], "notes": []};
