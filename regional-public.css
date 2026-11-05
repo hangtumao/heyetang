@@ -81,3 +81,8 @@ body:not(.regional-open) #regional-layer{display:none}
   .region-triangle{margin-left:-6px;margin-right:-6px}
   .distance-heading,.distance-notes,.region-bottom{overflow-wrap:anywhere}
 }
+
+/* The major retained views remain directly discoverable from the opening layers. */
+#public-sections{display:none}body.regional-open #public-sections{position:fixed;top:91px;right:5.4%;z-index:35;display:flex;gap:4px;padding:4px;background:#f6f8efd9;border:1px solid #fff;border-radius:6px}#public-sections button{min-height:35px;padding:8px 15px;border-radius:4px;font-size:11px;white-space:nowrap}#public-sections button:hover,#public-sections button[aria-current]{background:#dbe6d1}body.regional-open #regional-layer{top:141px}
+@media(max-width:800px){body.regional-open #public-sections{top:70px;left:16px;right:16px;justify-content:space-between;gap:0;padding:3px}#public-sections button{font-size:10px;min-height:36px;padding:7px 8px;flex:1}body.regional-open #regional-layer{top:117px}}
+@media(max-width:370px){body.regional-open #public-sections{left:10px;right:10px}#public-sections button{padding:7px 5px;font-size:9px}}

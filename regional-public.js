@@ -5,6 +5,11 @@ const $ = selector => document.querySelector(selector);
 const familyIds = new Set(places.map(place => place.id));
 const layer = $('#regional-layer');
 const experience = $('#cultural-experience');
+const sectionNav=document.createElement('nav');sectionNav.id='public-sections';sectionNav.setAttribute('aria-label','直接切换主要界面');
+sectionNav.innerHTML='<button data-section="home">三圣地总览</button><button data-section="family">家教节点</button><button data-section="planning">交通规划</button><button data-section="explore">四点模型</button>';
+document.querySelector('header').after(sectionNav);
+sectionNav.addEventListener('click',event=>{const button=event.target.closest('[data-section]');if(button)navigate(button.dataset.section);});
+
 const escape = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
 const mountain = `<svg class="place-art" viewBox="0 0 240 145" fill="none" aria-hidden="true"><ellipse cx="123" cy="116" rx="103" ry="24" fill="#d4e0c6"/><path d="M24 108 73 42l44 55 35-74 63 85-91 26Z" fill="#a7bd94"/><path d="m73 42 18 40 26 15-19 12-54-2Z" fill="#bacda7"/><path d="m152 23-28 111 91-26Z" fill="#849f72"/><path d="m152 23-17 45 12-8 12 11 9-11Z" fill="#e3ead6"/><path d="m73 42-10 30 9-7 12 10Z" fill="#d9e5cb"/><path d="m42 110 31-11m54 14 31-29m-2 34 25-17" stroke="#789168" opacity=".6"/><path d="m136 59 10-4 10 4-10 4Z" fill="#566d4d"/><path d="M140 61v7l6 3 6-3v-7" fill="#e7dfc7"/><path d="m140 68 6 3 6-3" stroke="#6e805f"/><path d="M28 117q35 15 57 4m79 3 42-5" stroke="#ecf2e3" stroke-width="2"/><g fill="#789263"><path d="m40 97 5-14 5 14Zm-9 10 5-14 5 14Zm161-6 5-14 5 14Z"/></g></svg>`;
 const homeArt = `<svg class="place-art" viewBox="0 0 240 145" fill="none" aria-hidden="true"><ellipse cx="121" cy="117" rx="108" ry="23" fill="#d6e2c8"/><path d="m26 104 98-51 94 53-96 31Z" fill="#baccaa"/><path d="m62 77 66-32 63 34-68 32Z" fill="#e0d9bf"/><path d="m62 77 61 34v19L62 97Z" fill="#c3bfa4"/><path d="m123 111 68-32v19l-68 32Z" fill="#e5dfc7"/><path d="m51 73 77-40 74 40-79 39Z" fill="#66795b"/><path d="m128 33-5 79 79-39Z" fill="#526b4b"/><path d="m59 73 65 31 69-31m-87-16 52 25m-37-34 52 25" stroke="#93a184" stroke-width="1"/><path d="m90 108 19 10v-22L90 86Z" fill="#e8e0c7"/><path d="m155 98 17-8v-15l-17 9Z" fill="#718265"/><path d="m124 111 14-7v21l-14 6Z" fill="#637a58"/><path d="m62 90 16 9v10l-16-9Z" fill="#7c8a6c"/><path d="m33 104 26-13 28 15-25 14Z" fill="#637d57"/><path d="m40 112 22 11 20-10v9l-20 10-22-11Z" fill="#e8dfc3"/><path d="m10 114 5-16 5 16Zm196-10 7-20 7 20Z" fill="#8aa476"/><path d="M85 132q32 9 60 0" stroke="#9dbbb0" stroke-width="5" stroke-linecap="round"/></svg>`;
@@ -27,10 +32,11 @@ function methodContent(){return `<button class="close-dialog" aria-label="关闭
 const method = document.createElement('dialog');method.id='travel-method-dialog';method.innerHTML=methodContent();document.body.append(method);
 method.querySelector('.close-dialog').addEventListener('click',()=>method.close());method.addEventListener('click',event=>{if(event.target!==method)return;const box=method.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)method.close();});
 function openMethod(){method.showModal();method.scrollTop=0;}
-function routeFromHash(){const hash=location.hash.slice(1);return hash==='three'||hash===''?'home':hash==='family'||hash==='explore'||descriptors[hash]||familyIds.has(hash)?hash:'home';}
+function routeFromHash(){const hash=location.hash.slice(1);return hash==='three'||hash===''?'home':hash==='family'||hash==='explore'||hash==='planning'||descriptors[hash]||familyIds.has(hash)?hash:'home';}
 function navigate(route,{push=true,focus=true}={}){
   if(document.body.classList.contains('scene-focused'))$('#scene-focus').click();
-  const isExperience=route==='explore'||familyIds.has(route);
+  const isExperience=route==='explore'||route==='planning'||familyIds.has(route);
+  sectionNav.querySelectorAll('button').forEach(button=>{if(button.dataset.section===route)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
   document.body.classList.toggle('regional-open',!isExperience);
   experience.inert=!isExperience;
   experience.setAttribute('aria-hidden',String(!isExperience));
@@ -40,7 +46,7 @@ function navigate(route,{push=true,focus=true}={}){
   const path=location.pathname+location.search+'#'+(route==='home'?'three':route);
   if(push)history.pushState({publicLayer:route},'',path);
   if(isExperience){
-    $('#back-btn').click();$('#abstract-btn').click();
+    $('#back-btn').click();$(route==='planning'?'#planning-btn':'#abstract-btn').click();
     if(familyIds.has(route)){const index=places.findIndex(place=>place.id===route);const target=document.querySelectorAll('#destinations .destination')[index];target?.click();}
     history.replaceState({publicLayer:route},'',path);
     if(focus)$('#viewport').focus({preventScroll:true});
@@ -57,6 +63,8 @@ layer.addEventListener('click',event=>{const target=event.target.closest('[data-
 $('#regional-home').addEventListener('click',()=>navigate('home'));
 $('#regional-family').addEventListener('click',()=>navigate('family'));
 $('.brand').addEventListener('click',event=>{event.preventDefault();navigate('home');});
+$('#planning-btn').addEventListener('click',()=>history.replaceState({publicLayer:'planning'},'',location.pathname+location.search+'#planning'));
+$('#abstract-btn').addEventListener('click',()=>history.replaceState({publicLayer:'explore'},'',location.pathname+location.search+'#explore'));
 window.addEventListener('popstate',()=>navigate(routeFromHash(),{push:false}));
 // A new visit opens at the three-destination layer; explicit deep links remain supported.
 navigate(routeFromHash(),{push:false,focus:false});
