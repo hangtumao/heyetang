@@ -29,6 +29,7 @@ method.querySelector('.close-dialog').addEventListener('click',()=>method.close(
 function openMethod(){method.showModal();method.scrollTop=0;}
 function routeFromHash(){const hash=location.hash.slice(1);return hash==='three'||hash===''?'home':hash==='family'||hash==='explore'||descriptors[hash]||familyIds.has(hash)?hash:'home';}
 function navigate(route,{push=true,focus=true}={}){
+  if(document.body.classList.contains('scene-focused'))$('#scene-focus').click();
   const isExperience=route==='explore'||familyIds.has(route);
   document.body.classList.toggle('regional-open',!isExperience);
   experience.inert=!isExperience;
